@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "node src/api.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "api": "nodemon src/api.js",
