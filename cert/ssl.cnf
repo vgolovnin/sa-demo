@@ -1,0 +1,19 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+C = RU
+ST = MOW
+L = Moscow
+O = DEMO
+OU = LAB0
+CN = DEMO-SERVER
+[v3_req]
+keyUsage = critical, digitalSignature, keyAgreement
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = DEMO-SERVER
+DNS.2 = demo-server
+IP.1 = 127.0.0.1
