@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 const path = require('path')
 const https = require('https')
+const fallback = require('express-history-api-fallback')
 
 const sslOptions = {
   key: fs.readFileSync(path.join(__dirname, '../cert/server.key')),
@@ -28,11 +29,11 @@ api.get('/', (req, res) => {
 })
 
 api.post('/setForm', (req, res) => {
-  console.log(req)
   fs.writeFileSync(filePath, `${req.body.leftSide},${req.body.rightSide}`)
   res.send({ status: 'ok' })
 })
 
 app.use('/api', api)
+app.use(fallback(path.join(__dirname, '../dist/index.html')))
 
 https.createServer(sslOptions, app).listen(3000)
