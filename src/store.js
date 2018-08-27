@@ -6,10 +6,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    username: '',
     leftSide: 'LOADING LEFT',
     rightSide: 'LOADING RIGHT'
   },
   mutations: {
+    setUsername (state, username) {
+      state.username = username
+    },
     updateForm (state, form) {
       if (form.leftSide) {
         state.leftSide = form.leftSide
@@ -21,6 +25,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getUsername ({ commit }) {
+      axios.get('/api/user').then(({ data }) => {
+        commit('setUsername', data.username)
+      })
+    },
     getForm ({ commit }) {
       axios.get('/api/').then(({ data }) => {
         console.log(data)

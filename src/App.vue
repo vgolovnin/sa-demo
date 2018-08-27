@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div>HELLO {{ username }}</div>
     <div id="nav">
       <router-link to="/">Form</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,6 +8,20 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'AppMain',
+  created () {
+    this.$store.dispatch('getUsername')
+  },
+  computed: {
+    username () {
+      return this.$store.state.username
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
